@@ -1,12 +1,29 @@
-import { PhotographIcon, XIcon } from "@heroicons/react/outline";
+import {
+  CalendarIcon,
+  ChartBarIcon,
+  EmojiHappyIcon,
+  PhotographIcon,
+  XIcon,
+} from "@heroicons/react/outline";
 import { useState, useRef } from "react";
+import { Picker } from "emoji-mart";
+import "emoji-mart/css/emoji-mart.css";
 
 function Input() {
   const [input, setInput] = useState("");
   const [selectedFile, setSelectedFile] = useState(null);
+  const [showEmojis, setShowEmojis] = useState(false);
   const filePickerRef = useRef(null);
 
   const addImageToPost = () => {};
+
+  const addEmoji = (e) => {
+    let sym = e.unified.split("-");
+    let codesArray = [];
+    sym.forEach((el) => codesArray.push("0x" + el));
+    let emoji = String.fromCodePoint(...codesArray);
+    setInput(input + emoji);
+  };
 
   return (
     <div
@@ -53,6 +70,30 @@ function Input() {
                 ref={filePickerRef}
               />
             </div>
+            <div className="icon rotate-90">
+              <ChartBarIcon className="text-[#1d9bf0] h-[22px]" />
+            </div>
+
+            <div className="icon" onClick={() => setShowEmojis(!showEmojis)}>
+              <EmojiHappyIcon className="text-[#1d9bf0] h-[22px]" />
+            </div>
+
+            <div className="icon">
+              <CalendarIcon className="text-[#1d9bf0] h-[22px]" />
+            </div>
+            {showEmojis && (
+              <Picker
+                onSelect={addEmoji}
+                style={{
+                  position: "absolute",
+                  marginTop: "465px",
+                  marginLeft: -40,
+                  maxWidth: "320px",
+                  borderRadius: "20px",
+                }}
+                theme="dark"
+              />
+            )}
           </div>
         </div>
       </div>
