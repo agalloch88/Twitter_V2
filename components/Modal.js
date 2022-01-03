@@ -119,7 +119,7 @@ function Modal() {
                       alt=""
                       className="h-11 w-11 rounded-full"
                     />
-                    <div className="flex-grow mt-2">
+                    <div className="flex-grow mt-2 overflow-y-scroll scrollbar-hide">
                       <textarea
                         value={comment}
                         onChange={(e) => setComment(e.target.value)}
