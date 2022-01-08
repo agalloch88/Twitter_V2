@@ -3,7 +3,7 @@ import React from 'react'
 function hello() {
     return (
         <div>
-            hello world
+            "version": "0.1.0"
         </div>
     )
 }
